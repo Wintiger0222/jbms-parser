@@ -236,6 +236,8 @@ public class Section {
 	private static final int[] CHANNELASSIGN_BEAT5 = { 0, 1, 2, 3, 4, 5, -1, -1, -1, 6, 7, 8, 9, 10, 11, -1, -1, -1 };
 	private static final int[] CHANNELASSIGN_BEAT7 = { 0, 1, 2, 3, 4, 7, -1, 5, 6, 8, 9, 10, 11, 12, 15, -1, 13, 14 };
 	private static final int[] CHANNELASSIGN_POPN = { 0, 1, 2, 3, 4, -1,-1,-1,-1,-1, 5, 6, 7, 8,-1,-1,-1,-1 };
+	private static final int[] CHANNELASSIGN_GENERIC4 = { 0, 1,-1, 2, 3, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
+	private static final int[] CHANNELASSIGN_GENERIC6 = { 0, 1, 2,-1, 3, -1, -1, 4, 5,-1, -1, -1, -1, -1, -1, -1, -1, -1 };
 
 	private TreeMap<Double, TimeLineCache> tlcache;
 
@@ -247,7 +249,10 @@ public class Section {
 		final int lnmode = model.getLnmode();
 		this.tlcache = tlcache;
 		final int[] cassign = model.getMode() == Mode.POPN_9K ? CHANNELASSIGN_POPN : 
-			(model.getMode() == Mode.BEAT_7K || model.getMode() == Mode.BEAT_14K ? CHANNELASSIGN_BEAT7 : CHANNELASSIGN_BEAT5);
+			(model.getMode() == Mode.BEAT_7K || model.getMode() == Mode.BEAT_14K ? CHANNELASSIGN_BEAT7 : 
+			(model.getMode() == Mode.GENERIC_4K ? CHANNELASSIGN_GENERIC4 :
+			(model.getMode() == Mode.GENERIC_6K ? CHANNELASSIGN_GENERIC6 :			
+			CHANNELASSIGN_BEAT5)));
 		final int base = model.getBase();
 		// 小節線追加
 		final TimeLine basetl = getTimeLine(sectionnum);

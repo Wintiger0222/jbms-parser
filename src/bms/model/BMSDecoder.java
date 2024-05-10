@@ -293,7 +293,13 @@ public class BMSDecoder extends ChartDecoder {
 							} else {
 								log.add(new DecodeLog(WARNING, "#SCROLLxxは不十分な定義です : " + line));
 							}
-						} else {
+						} else if (matchesReserveWord(line, "4K")) {
+							model.setMode(Mode.GENERIC_4K);
+							log.add(new DecodeLog(WARNING, "#4K : " + line));
+						} else if (matchesReserveWord(line, "6K")) {
+							model.setMode(Mode.GENERIC_6K);
+							log.add(new DecodeLog(WARNING, "#6K : " + line));
+						}  else {
 							for (CommandWord cw : commandWords) {
 								if (line.length() > cw.name().length() + 2 && matchesReserveWord(line, cw.name())) {
 									DecodeLog log = cw.function.apply(model, line.substring(cw.name().length() + 2).trim());
@@ -601,6 +607,14 @@ enum CommandWord {
 		}
 		return null;
 	});
+	/* Impossible parsing because start with number?
+	4K ((model, arg) -> {
+		model.setMode(Mode.GENERIC_4K);
+	}),
+	6K ((model, arg) -> {
+		model.setMode(Mode.GENERIC_6K);
+	});
+	 */
 
 	public final BiFunction<BMSModel, String, DecodeLog> function;
 

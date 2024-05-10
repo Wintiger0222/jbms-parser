@@ -15,6 +15,13 @@ public enum Mode {
 	POPN_9K(9, "popn-9k", 1, 9, new int[] {}),
 	KEYBOARD_24K(25, "keyboard-24k", 1, 26, new int[] { 24, 25 }), 
 	KEYBOARD_24K_DOUBLE(50, "keyboard-24k-double", 2, 52, new int[] { 24, 25, 50, 51 }),
+	GENERIC_4K(4, "generic-4k", 1, 4, new int[] {}),
+	GENERIC_5K(5, "generic-5k", 1, 5, new int[] {}),
+	GENERIC_6K(6, "generic-6k", 1, 6, new int[] {}),
+	GENERIC_7K(7, "generic-7k", 1, 7, new int[] {}),
+	GENERIC_8K(8, "generic-8k", 1, 8, new int[] {}),
+	GENERIC_9K(9, "generic-9k", 1, 9, new int[] {}),
+	GENERIC_10K(10, "generic-10k", 1, 10, new int[] {}),
 	;
 
 	public final int id;
